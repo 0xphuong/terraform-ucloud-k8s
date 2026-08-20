@@ -7,6 +7,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-08-20
+
+### Fixed
+- `cluster.kube_proxy_mode` accepted only `ipvs` and `iptables`, which wrongly rejected `nftables` —
+  a kube-proxy mode since Kubernetes 1.31. The provider does not validate this field at all, so an
+  allow-list invented here was blocking values the platform may well accept. The list now covers the
+  three upstream modes, and the comment records that only typos are being caught: whether a given
+  cluster version supports a mode is decided by the API.
+
 ## [1.0.0] - 2026-08-17
 
 ### Added

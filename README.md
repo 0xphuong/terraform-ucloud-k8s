@@ -126,7 +126,7 @@ create three masters. Repeat one zone for a single-AZ control plane, or list dis
 | `duration` | Billing periods; ignored when `dynamic` | `null` |
 | `enable_external_api_server` | Expose the API server publicly | `null` |
 | `delete_disks_with_instance` | Destroy cloud data disks with the node | `true` |
-| `kube_proxy_mode` | `ipvs` or `iptables` | `null` |
+| `kube_proxy_mode` | `ipvs`, `iptables`, or `nftables` (1.31+) | `null` |
 | `user_data`, `init_script` | Startup customisation | `null` |
 | `timeouts` | `create` / `update` / `delete` | `null` |
 

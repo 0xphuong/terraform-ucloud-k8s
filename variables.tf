@@ -83,11 +83,14 @@ variable "cluster" {
     condition     = var.cluster.master.data_disk_size == null ? true : var.cluster.master.data_disk_size % 10 == 0
     error_message = "cluster.master.data_disk_size must be a multiple of 10 GB."
   }
+  # The upstream kube-proxy modes. The provider does not validate this field at
+  # all, and whether a given cluster version accepts a mode is decided by the
+  # API — this only catches typos.
   validation {
     condition = var.cluster.kube_proxy_mode == null ? true : contains(
-      ["ipvs", "iptables"], var.cluster.kube_proxy_mode
+      ["ipvs", "iptables", "nftables"], var.cluster.kube_proxy_mode
     )
-    error_message = "cluster.kube_proxy_mode must be 'ipvs' or 'iptables'."
+    error_message = "cluster.kube_proxy_mode must be 'ipvs', 'iptables', or 'nftables'."
   }
 }
 
